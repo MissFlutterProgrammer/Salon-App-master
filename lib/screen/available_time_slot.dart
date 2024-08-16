@@ -1,12 +1,11 @@
-import 'dart:convert';
+// ignore_for_file: camel_case_types, avoid_print, use_build_context_synchronously
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:salon_app/screen/booked.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salon_app/constants.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Time_Slot extends StatefulWidget {
@@ -49,7 +48,7 @@ class _Time_SlotState extends State<Time_Slot> {
     return true;
   }
 
-  Future<void> dobooking(String time_book) async {
+  Future<void> dobooking(String timeBook) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       var res = await http.post(Uri.parse(url_booking), body: {
@@ -57,18 +56,20 @@ class _Time_SlotState extends State<Time_Slot> {
         'name': prefs.getString('register') != null
             ? prefs.getString('register').toString()
             : prefs.getString('Login').toString(),
-        'time': time_book.toString(),
+        'time': timeBook.toString(),
         'type': choice.toString()
       });
       var data = await jsonDecode(res.body);
       print(res.body);
       if (data.toString() == 'Success') {
-        
-
         next(context);
 
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Booked()));
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Booked(),
+          ),
+        );
       }
     } catch (e) {
       print(e);
@@ -80,94 +81,107 @@ class _Time_SlotState extends State<Time_Slot> {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
+          preferredSize: const Size.fromHeight(60),
           child: AppBar(
             flexibleSpace: Container(),
             automaticallyImplyLeading: false,
             backgroundColor: kPrimaryColor,
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(50.0),
-                    bottomRight: Radius.circular(50.0))),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50.0),
+                bottomRight: Radius.circular(50.0),
+              ),
+            ),
             centerTitle: true,
             title: Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 20),
               child: Text(
                 'Time Slots',
                 style: GoogleFonts.ubuntu(
-                    fontSize: 40.0, fontWeight: FontWeight.bold),
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
         ),
         body: Column(
           children: [
-            SizedBox(
-              height: 5,
-            ),
-            SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 5),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
                   itemCount: TimeSlot.length,
                   itemBuilder: (context, index) {
                     if (gettime(TimeSlot[index]['time_slot_start']) == true) {
                       return GestureDetector(
-                          onTap: () {
-                            _onAlertButtonPressed1(context);
-                            dobooking(TimeSlot[index]['time_slot_start']);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 5, 40, 5),
-                            child: Material(
-                              elevation: 5.0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: kPrimaryColor,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10, bottom: 10),
-                                    child: Text(
-                                      TimeSlot[index]['time_slot_start'] +
-                                          ' - ' +
-                                          TimeSlot[index]['time_slot_end'],
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.ubuntu(
-                                          color: Colors.white, fontSize: 24.0),
-                                    ),
-                                  )),
+                        onTap: () {
+                          _onAlertButtonPressed1(context);
+                          dobooking(
+                            TimeSlot[index]['time_slot_start'],
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(40, 5, 40, 5),
+                          child: Material(
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
-                          ));
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: kPrimaryColor,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  bottom: 10,
+                                ),
+                                child: Text(
+                                  TimeSlot[index]['time_slot_start'] +
+                                      ' - ' +
+                                      TimeSlot[index]['time_slot_end'],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.ubuntu(
+                                    color: Colors.white,
+                                    fontSize: 24.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
                     } else {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(40, 5, 40, 5),
                         child: Material(
                           elevation: 5.0,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color.fromARGB(255, 174, 190, 201),
-                              ),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, bottom: 10),
-                                child: Text(
-                                  TimeSlot[index]['time_slot_start'] +
-                                      ' - ' +
-                                      TimeSlot[index]['time_slot_end'] +
-                                      '\nNot Available',
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.ubuntu(
-                                      color: Colors.white, fontSize: 24.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: const Color.fromARGB(255, 174, 190, 201),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
+                              child: Text(
+                                TimeSlot[index]['time_slot_start'] +
+                                    ' - ' +
+                                    TimeSlot[index]['time_slot_end'] +
+                                    '\nNot Available',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.ubuntu(
+                                  color: Colors.white,
+                                  fontSize: 24.0,
                                 ),
-                              )),
+                              ),
+                            ),
+                          ),
                         ),
                       );
                     }
@@ -177,30 +191,32 @@ class _Time_SlotState extends State<Time_Slot> {
           ],
         ),
         floatingActionButton: FloatingActionButton.extended(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          backgroundColor: const Color.fromARGB(255, 252, 252, 252),
+          onPressed: () {
+            int count = 0;
+            Navigator.popUntil(context, (route) {
+              return count++ == 2;
+            });
+          },
+          label: Text(
+            'Back',
+            style: GoogleFonts.ubuntu(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
-            backgroundColor: Color.fromARGB(255, 252, 252, 252),
-            onPressed: () {
-              int count = 0;
-              Navigator.popUntil(context, (route) {
-                return count++ == 2;
-              });
-            },
-            label: Text(
-              'Back',
-              style: GoogleFonts.ubuntu(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
-            )),
+          ),
+        ),
       ),
     );
   }
 }
 
 _onAlertButtonPressed1(context) {
-  AlertDialog alert = AlertDialog(
+  AlertDialog alert = const AlertDialog(
     title: Text('Booking Slot'),
     content: LinearProgressIndicator(
       color: kPrimaryColor,

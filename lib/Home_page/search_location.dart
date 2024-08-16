@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salon_app/Home_page/locations.dart';
-import 'package:salon_app/Home_page/HomePage.dart';
 
 List<String> searchedTerms = [];
 String? placedsearch;
 
-
-
 class CustomSearchDelegate extends SearchDelegate {
-
-
-
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -19,7 +13,7 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           query = '';
         },
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
       )
     ];
   }
@@ -27,10 +21,11 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          close(context, null);
-        },
-        icon: Icon(Icons.arrow_back));
+      onPressed: () {
+        close(context, null);
+      },
+      icon: const Icon(Icons.arrow_back),
+    );
   }
 
   @override
@@ -50,19 +45,20 @@ class CustomSearchDelegate extends SearchDelegate {
               GestureDetector(
                 onTap: () {
                   placedsearch = result;
-                      Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SalonsSearch(),
-                      
+                      builder: (context) => const SalonsSearch(),
                     ),
                   );
                 },
                 child: ListTile(
                   title: Text(
                     result,
-                    style:
-                        GoogleFonts.ubuntu(color: Colors.black, fontSize: 20.0),
+                    style: GoogleFonts.ubuntu(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
                   ),
                 ),
               ),
@@ -88,22 +84,21 @@ class CustomSearchDelegate extends SearchDelegate {
             children: [
               GestureDetector(
                 onTap: () {
-                 
                   placedsearch = result;
-                      Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SalonsSearch(),
-                       
+                      builder: (context) => const SalonsSearch(),
                     ),
                   );
-                
                 },
                 child: ListTile(
                   title: Text(
                     result,
-                    style:
-                        GoogleFonts.ubuntu(color: Colors.black, fontSize: 20.0),
+                    style: GoogleFonts.ubuntu(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
                   ),
                 ),
               ),

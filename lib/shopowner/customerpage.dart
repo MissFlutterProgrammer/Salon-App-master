@@ -1,6 +1,7 @@
+// ignore_for_file: camel_case_types, avoid_print, prefer_interpolation_to_compose_strings, deprecated_member_use, non_constant_identifier_names
+
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salon_app/constants.dart';
@@ -67,7 +68,10 @@ class _customerState extends State<customer> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(Duration(minutes: 10), (Timer t) => UpdateScreen());
+    timer = Timer.periodic(
+      const Duration(minutes: 10),
+      (Timer t) => UpdateScreen(),
+    );
   }
 
   @override
@@ -80,7 +84,7 @@ class _customerState extends State<customer> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 199, 230, 255),
+        backgroundColor: const Color.fromARGB(255, 199, 230, 255),
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
@@ -114,15 +118,19 @@ class _customerState extends State<customer> {
                       padding: const EdgeInsets.fromLTRB(10, 12, 12, 0),
                       child: Material(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         elevation: 3,
                         child: Container(
                           decoration: BoxDecoration(
-                              gradient: const LinearGradient(colors: [
+                            gradient: const LinearGradient(
+                              colors: [
                                 Color.fromARGB(255, 68, 171, 255),
                                 Color.fromARGB(255, 46, 161, 255),
-                              ]),
-                              borderRadius: BorderRadius.circular(20.0)),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Column(
@@ -133,9 +141,7 @@ class _customerState extends State<customer> {
                                       TodayBooking[index]['time_slot_end'],
                                   style: GoogleFonts.ubuntu(fontSize: 22),
                                 ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
+                                const SizedBox(height: 4),
                                 Booking_card_row(
                                   card_icon: Icons.face,
                                   card_text: TodayBooking[index]['name'],
@@ -151,7 +157,8 @@ class _customerState extends State<customer> {
                                 const SizedBox(height: 8),
                                 MaterialButton(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(24)),
+                                    borderRadius: BorderRadius.circular(24),
+                                  ),
                                   onPressed: () async {
                                     final Uri launchUri = Uri(
                                       scheme: 'tel',
@@ -160,10 +167,10 @@ class _customerState extends State<customer> {
                                     );
                                     await launch(launchUri.toString());
                                   },
-                                  color: const Color.fromARGB(255, 60, 190, 255),
+                                  color:
+                                      const Color.fromARGB(255, 60, 190, 255),
                                   child: const Padding(
-                                    padding:
-                                        EdgeInsets.fromLTRB(90, 2, 90, 2),
+                                    padding: EdgeInsets.fromLTRB(90, 2, 90, 2),
                                     child: Icon(
                                       Icons.call,
                                       color: Colors.white,
@@ -182,15 +189,19 @@ class _customerState extends State<customer> {
                       padding: const EdgeInsets.fromLTRB(10, 12, 12, 0),
                       child: Material(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         elevation: 3,
                         child: Container(
                           decoration: BoxDecoration(
-                              gradient: const LinearGradient(colors: [
+                            gradient: const LinearGradient(
+                              colors: [
                                 Color.fromARGB(255, 195, 206, 215),
                                 Color.fromARGB(255, 162, 168, 173),
-                              ]),
-                              borderRadius: BorderRadius.circular(20.0)),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Column(
@@ -201,9 +212,7 @@ class _customerState extends State<customer> {
                                       TodayBooking[index]['time_slot_end'],
                                   style: GoogleFonts.ubuntu(fontSize: 22),
                                 ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
+                                const SizedBox(height: 4),
                                 Booking_card_row(
                                   card_icon: Icons.face,
                                   card_text: TodayBooking[index]['name'],
@@ -226,20 +235,25 @@ class _customerState extends State<customer> {
                 } //ListTile
                 ,
                 childCount: TodayBooking.length,
-              ), //SliverChildBuildDelegate
+              ),
             ) //SliverList
           ], //<Widget>[]
         ),
         floatingActionButton: FloatingActionButton.extended(
-            backgroundColor: Color.fromARGB(255, 93, 172, 250),
-            onPressed: () {
-              UpdateScreen();
-            },
-            label: Text(
-              'Refresh',
-              style: GoogleFonts.ubuntu(fontWeight: FontWeight.bold),
+          backgroundColor: const Color.fromARGB(255, 93, 172, 250),
+          onPressed: () {
+            UpdateScreen();
+          },
+          label: Text(
+            'Refresh',
+            style: GoogleFonts.ubuntu(
+              fontWeight: FontWeight.bold,
             ),
-            icon: const Icon(Icons.refresh)), //CustonScrollView
+          ),
+          icon: const Icon(
+            Icons.refresh,
+          ),
+        ), //CustonScrollView
       ),
     );
   }
@@ -249,7 +263,11 @@ class Booking_card_row extends StatelessWidget {
   final String card_text;
   final IconData card_icon;
 
-  Booking_card_row({required this.card_icon, required this.card_text});
+  const Booking_card_row({
+    Key? key,
+    required this.card_icon,
+    required this.card_text,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -259,13 +277,13 @@ class Booking_card_row extends StatelessWidget {
           color: const Color.fromARGB(255, 207, 233, 255),
           size: 30,
         ),
-        const SizedBox(
-          width: 12,
-        ),
+        const SizedBox(width: 12),
         Flexible(
           child: Text(
             card_text,
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(
+              fontSize: 20,
+            ),
           ),
         ),
       ],

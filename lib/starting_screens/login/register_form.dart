@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names
 
+import 'package:flutter/material.dart';
 import 'package:salon_app/starting_screens/components/rounded_button.dart';
 import 'package:salon_app/starting_screens/components/rounded_input.dart';
 import 'package:salon_app/starting_screens/components/rounded_password_input.dart';
 import 'package:salon_app/starting_screens/emailverify.dart';
-
-
 
 var email_register;
 var password_register;
@@ -35,7 +34,7 @@ class RegisterForm extends StatelessWidget {
         visible: !isLogin,
         child: Align(
           alignment: Alignment.bottomCenter,
-          child: Container(
+          child: SizedBox(
             width: size.width,
             height: defaultLoginSize,
             child: SingleChildScrollView(
@@ -43,67 +42,72 @@ class RegisterForm extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                  Text(
+                  const Text(
                     'Welcome',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
                   ),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   RoundedInput(
                     icon: Icons.mail,
                     hint: 'email',
-                    value: (String value_input) {
-                      email_register = value_input;
+                    value: (String valueInput) {
+                      email_register = valueInput;
                     },
                   ),
-                    RoundedInput(
+                  RoundedInput(
                     icon: Icons.phone,
                     hint: 'Number without +91',
-                    value: (String value_input) {
-                      number_register = value_input;
+                    value: (String valueInput) {
+                      number_register = valueInput;
                     },
                   ),
 
                   RoundedInput(
                     icon: Icons.face,
                     hint: 'Name',
-                    value: (String value_input) {
-                      name_register = value_input;
+                    value: (String valueInput) {
+                      name_register = valueInput;
                     },
                   ),
 
                   RoundedPasswordInput(
                     hint: 'Password',
-                    value: (String value_input) {
-                      password_register = value_input;
+                    value: (String valueInput) {
+                      password_register = valueInput;
                     },
                   ),
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
                   RoundedButton(
                     title: 'SIGN UP',
                     ontap: () {
-                         if (email_register!=null &&number_register!=null && name_register!= null&& password_register!= null) {
-               sendOtp(context);  
+                      if (email_register != null &&
+                          number_register != null &&
+                          name_register != null &&
+                          password_register != null) {
+                        sendOtp(context);
 
-                  Navigator.push(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Verification()));          
-                        }
-                     
-
-                   
+                            builder: (context) => const Verification(),
+                          ),
+                        );
+                      }
                     },
                   ), //ass register
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

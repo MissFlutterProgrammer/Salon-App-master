@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 
 class suggestion extends StatelessWidget {
@@ -6,7 +8,7 @@ class suggestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+      appBar: AppBar(),
     );
   }
 }

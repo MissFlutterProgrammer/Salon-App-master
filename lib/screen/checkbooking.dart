@@ -1,7 +1,8 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings, deprecated_member_use, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salon_app/constants.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 
 class CheckBooking extends StatelessWidget {
@@ -15,8 +16,10 @@ class CheckBooking extends StatelessWidget {
           backgroundColor: Colors.blue,
           title: Text(
             'Your Bookings',
-            style:
-                GoogleFonts.ubuntu(fontSize: 35, fontWeight: FontWeight.bold),
+            style: GoogleFonts.ubuntu(
+              fontSize: 35,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           centerTitle: true,
         ),
@@ -27,12 +30,14 @@ class CheckBooking extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(10, 12, 10, 0),
                 child: Material(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   elevation: 3,
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.blue.shade100,
-                        borderRadius: BorderRadius.circular(10.0)),
+                      color: Colors.blue.shade100,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
@@ -65,7 +70,8 @@ class CheckBooking extends StatelessWidget {
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                             onPressed: () async {
                               final Uri launchUri = Uri(
                                 scheme: 'tel',
@@ -98,16 +104,17 @@ class CheckBooking extends StatelessWidget {
 class card_row extends StatelessWidget {
   final String text;
   final IconData icon;
-  card_row({required this.icon, required this.text});
+  const card_row({Key? key, required this.icon, required this.text})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Icon(icon),
-        SizedBox(
-          width: 8,
+        const SizedBox(width: 8),
+        Flexible(
+          child: Text(text),
         ),
-        Flexible(child: Text(text)),
       ],
     );
   }

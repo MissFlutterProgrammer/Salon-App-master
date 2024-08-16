@@ -8,7 +8,7 @@ class CancelButton extends StatelessWidget {
     required this.animationDuration,
     required this.size,
     required this.animationController,
-    required this.tapEvent
+    required this.tapEvent,
   }) : super(key: key);
 
   final bool isLogin;
@@ -28,9 +28,8 @@ class CancelButton extends StatelessWidget {
           width: size.width,
           height: size.height * 0.1,
           alignment: Alignment.bottomCenter,
-
           child: IconButton(
-            icon: Icon(Icons.close),
+            icon: const Icon(Icons.close),
             onPressed: tapEvent,
             color: kPrimaryColor,
           ),

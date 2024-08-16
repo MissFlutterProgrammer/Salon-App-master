@@ -5,7 +5,7 @@ class RoundedButton extends StatelessWidget {
   const RoundedButton({
     Key? key,
     required this.title,
-    required this.ontap
+    required this.ontap,
   }) : super(key: key);
 
   final String title;
@@ -27,7 +27,10 @@ class RoundedButton extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           title,
-          style: const TextStyle(color: Colors.white, fontSize: 18),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+          ),
         ),
       ),
     );

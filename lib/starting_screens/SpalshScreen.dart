@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, camel_case_types, library_private_types_in_public_api, avoid_print, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:salon_app/Home_page/HomePage.dart';
@@ -8,17 +10,17 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:salon_app/constants.dart';
 import 'dart:io';
-
 import '../intro.dart';
 import '../shopowner/customerpage.dart';
 
 class Splash_Screen_Screen extends StatefulWidget {
+  const Splash_Screen_Screen({Key? key}) : super(key: key);
+
   @override
   _Splash_Screen_ScreenState createState() => _Splash_Screen_ScreenState();
 }
 
 class _Splash_Screen_ScreenState extends State<Splash_Screen_Screen> {
-  @override
   Future<void> checkconnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -36,8 +38,12 @@ class _Splash_Screen_ScreenState extends State<Splash_Screen_Screen> {
             print(e);
           }
 
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => Home_Page_Screen()));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Home_Page_Screen(),
+            ),
+          );
         } else if (prefs.getString('id') != null &&
             prefs.getString('email_owner') != null &&
             prefs.getString('num') != null) {
@@ -62,19 +68,30 @@ class _Splash_Screen_ScreenState extends State<Splash_Screen_Screen> {
             });
 
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => customer()));
+              context,
+              MaterialPageRoute(
+                builder: (context) => const customer(),
+              ),
+            );
           } catch (e) {
             print(e);
           }
         } else {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => App()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => const App(),
+            ),
+          );
         }
       }
     } on SocketException catch (_) {
       print('socket');
       _showAlertDialog(
-          context, 'Connection Failed', 'Turn on your internet connection');
+        context,
+        'Connection Failed',
+        'Turn on your internet connection',
+      );
     }
   }
 
@@ -88,25 +105,30 @@ class _Splash_Screen_ScreenState extends State<Splash_Screen_Screen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-              image: AssetImage("images/splash.png"), fit: BoxFit.cover)),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        image: DecorationImage(
+          image: AssetImage("images/splash.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
     );
     //  child: Image.asset('images/splash.png'));
   }
 }
 
 class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return LoginScreen();
+    return const LoginScreen();
   }
 }
 
 _showAlertDialog(BuildContext context, first, second) {
   Widget okButton = TextButton(
-    child: Text("OK"),
+    child: const Text("OK"),
     onPressed: () {
       SystemNavigator.pop();
     },

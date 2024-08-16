@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use, file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:salon_app/starting_screens/login/login_form.dart';
@@ -6,6 +8,8 @@ import 'package:salon_app/constants.dart';
 import 'package:salon_app/starting_screens/login/cancel_button.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -20,8 +24,10 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: animationDuration);
+    animationController = AnimationController(
+      vsync: this,
+      duration: animationDuration,
+    );
   }
 
   @override
@@ -40,10 +46,15 @@ class _LoginScreenState extends State<LoginScreen>
     double defaultLoginSize = size.height - (size.height * 0.2);
     double defaultRegisterSize = size.height - (size.height * 0.1);
 
-    containerSize =
-        Tween<double>(begin: size.height * 0.1, end: defaultRegisterSize)
-            .animate(CurvedAnimation(
-                parent: animationController!, curve: Curves.linear));
+    containerSize = Tween<double>(
+      begin: size.height * 0.1,
+      end: defaultRegisterSize,
+    ).animate(
+      CurvedAnimation(
+        parent: animationController!,
+        curve: Curves.linear,
+      ),
+    );
 
     return WillPopScope(
       onWillPop: () async {
@@ -77,26 +88,30 @@ class _LoginScreenState extends State<LoginScreen>
           children: [
             // Lets add some decorations
             Positioned(
-                bottom: 100,
-                right: -50,
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: kPrimaryColor),
-                )),
+              bottom: 100,
+              right: -50,
+              child: Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: kPrimaryColor,
+                ),
+              ),
+            ),
 
             Positioned(
-                top: -50,
-                left: -50,
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: kPrimaryColor),
-                )),
+              top: -50,
+              left: -50,
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: kPrimaryColor,
+                ),
+              ),
+            ),
 
             // Cancel Button
             CancelButton(
@@ -117,10 +132,11 @@ class _LoginScreenState extends State<LoginScreen>
 
             // Login Form
             LoginForm(
-                isLogin: isLogin,
-                animationDuration: animationDuration,
-                size: size,
-                defaultLoginSize: defaultLoginSize),
+              isLogin: isLogin,
+              animationDuration: animationDuration,
+              size: size,
+              defaultLoginSize: defaultLoginSize,
+            ),
 
             // Register Container
             AnimatedBuilder(
@@ -139,10 +155,11 @@ class _LoginScreenState extends State<LoginScreen>
 
             // Register Form
             RegisterForm(
-                isLogin: isLogin,
-                animationDuration: animationDuration,
-                size: size,
-                defaultLoginSize: defaultRegisterSize),
+              isLogin: isLogin,
+              animationDuration: animationDuration,
+              size: size,
+              defaultLoginSize: defaultRegisterSize,
+            ),
           ],
         ),
       ),
@@ -156,11 +173,12 @@ class _LoginScreenState extends State<LoginScreen>
         width: double.infinity,
         height: containerSize.value,
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(100),
-              topRight: Radius.circular(100),
-            ),
-            color: kBackgroundColor),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(100),
+            topRight: Radius.circular(100),
+          ),
+          color: kBackgroundColor,
+        ),
         alignment: Alignment.center,
         child: GestureDetector(
           onTap: !isLogin
@@ -175,7 +193,10 @@ class _LoginScreenState extends State<LoginScreen>
           child: isLogin
               ? const Text(
                   "Don't have an account? Sign up",
-                  style: TextStyle(color: kPrimaryColor, fontSize: 18),
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: 18,
+                  ),
                 )
               : null,
         ),

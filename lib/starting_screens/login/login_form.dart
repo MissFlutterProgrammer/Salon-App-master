@@ -1,14 +1,13 @@
-import 'dart:convert';
+// ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names, use_build_context_synchronously, avoid_print, unrelated_type_equality_checks
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:salon_app/starting_screens/components/rounded_button.dart';
 import 'package:salon_app/starting_screens/components/rounded_input.dart';
 import 'package:salon_app/starting_screens/components/rounded_password_input.dart';
 import 'package:salon_app/starting_screens/login/forgetPassword.dart';
-
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-
 import '../../Home_page/HomePage.dart';
 import '../../constants.dart';
 
@@ -42,7 +41,7 @@ class _LoginFormState extends State<LoginForm> {
       duration: widget.animationDuration * 4,
       child: Align(
         alignment: Alignment.center,
-        child: Container(
+        child: SizedBox(
           width: widget.size.width,
           height: widget.defaultLoginSize,
           child: SingleChildScrollView(
@@ -50,9 +49,7 @@ class _LoginFormState extends State<LoginForm> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 79,
-                ),
+                const SizedBox(height: 79),
                 const Text(
                   'Welcome Back',
                   style: TextStyle(
@@ -60,33 +57,38 @@ class _LoginFormState extends State<LoginForm> {
                     fontSize: 40,
                   ),
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 RoundedInput(
                   icon: Icons.mail,
                   hint: 'email',
-                  value: (String value_input) {
-                    email_login = value_input;
+                  value: (String valueInput) {
+                    email_login = valueInput;
                   },
                 ),
-               
                 RoundedPasswordInput(
                   hint: 'Password',
-                  value: (String value_input) {
-                    password_login = value_input;
+                  value: (String valueInput) {
+                    password_login = valueInput;
                   },
                 ),
                 TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Forgetpassword()));
-                    },
-                    child: const Text(
-                      'Forget Password ?',
-                      style: TextStyle(color: Colors.black, fontSize: 20.0),
-                    )),
-                SizedBox(height: 10),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Forgetpassword(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Forget Password ?',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
                 RoundedButton(
                   title: 'LOGIN',
                   ontap: () {
@@ -108,7 +110,7 @@ Future<void> Login(
     String emailtxt, String password, BuildContext context) async {
   var response = await http.post(Uri.parse(url_login),
       body: {'email': emailtxt, 'password': password});
-  var login_data = await jsonDecode(response.body);
+  var loginData = await jsonDecode(response.body);
   if (emailtxt != Null && password != Null) {
     final prefs = await SharedPreferences.getInstance();
 
@@ -119,13 +121,15 @@ Future<void> Login(
     //         builder: (context) => const Home_Page_Screen()),
     //   );
 
-    if (login_data.toString() == "Success") {
+    if (loginData.toString() == "Success") {
       prefs.setString('customer', name_login);
       customer_name = prefs.getString('customer');
       prefs.setString('Login', emailtxt);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const Home_Page_Screen()),
+        MaterialPageRoute(
+          builder: (context) => const Home_Page_Screen(),
+        ),
       );
     } else {
       print('not exist enter');
@@ -135,9 +139,11 @@ Future<void> Login(
 }
 
 _onAlertButtonPressed1(context) {
-  AlertDialog alert = AlertDialog(
+  AlertDialog alert = const AlertDialog(
     title: Text('Account Not Exists'),
-    content: Text("Please Sign up first"),
+    content: Text(
+      "Please Sign up first",
+    ),
   );
 
   // show the dialog

@@ -1,9 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salon_app/shopowner/Shopowner_login.dart';
 import 'package:salon_app/starting_screens/Login_page.dart';
-
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-         onWillPop: () async {
+      onWillPop: () async {
         final shouldPop = await showDialog<bool>(
           context: context,
           builder: (context) {
@@ -39,74 +40,96 @@ class App extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           body: Center(
             child: Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('images/choose.png'), fit: BoxFit.cover),
+                  image: AssetImage('images/choose.png'),
+                  fit: BoxFit.cover,
+                ),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Material(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
                     elevation: 1,
                     color: Colors.transparent,
                     child: OutlinedButton(
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => LoginScreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreen(),
+                          ),
+                        );
                       },
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        side: const BorderSide(
+                          color: Colors.white,
+                          width: 4,
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(35, 10, 35, 10),
                         child: Text(
                           'Customer',
                           style: GoogleFonts.ubuntu(
-                              fontSize: 43, color: Colors.white),
+                            fontSize: 43,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                      style: OutlinedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40)),
-                          side: BorderSide(color: Colors.white, width: 4)),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 14,
                   ),
                   Material(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
                     elevation: 1,
                     color: Colors.transparent,
                     child: OutlinedButton(
                       onPressed: () {
- Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Shop_owner_login()));
-                        
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Shop_owner_login(),
+                          ),
+                        );
                       },
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        side: const BorderSide(
+                          color: Colors.white,
+                          width: 4,
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           'Salon Owner',
                           style: GoogleFonts.ubuntu(
-                              fontSize: 43, color: Colors.white),
+                            fontSize: 43,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                      style: OutlinedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40)),
-                          side: BorderSide(color: Colors.white, width: 4)),
                     ),
                   ),
-                  SizedBox(
-                    height: 80,
-                  )
+                  const SizedBox(height: 80)
                 ],
               ),
             ),
