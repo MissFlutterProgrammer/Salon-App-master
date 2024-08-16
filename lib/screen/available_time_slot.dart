@@ -185,7 +185,6 @@ class _Time_SlotState extends State<Time_Slot> {
                         ),
                       );
                     }
-                    //if
                   }),
             ),
           ],

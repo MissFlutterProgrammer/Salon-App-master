@@ -92,19 +92,19 @@ class _customerState extends State<customer> {
               pinned: true,
               floating: false,
               flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Text(OwnerDetail[0]['Name'],
-                      style: GoogleFonts.ubuntu(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26.0,
-                      ) //TextStyle
-                      ), //Text
-                  background: Image.network(
-                    uploaded_images + OwnerDetail[0]['image_name'],
-                    fit: BoxFit.cover,
-                  ) //Images.network
-                  ), //FlexibleSpaceBar
+                centerTitle: true,
+                title: Text(OwnerDetail[0]['Name'],
+                    style: GoogleFonts.ubuntu(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26.0,
+                    ) //TextStyle
+                    ), //Text
+                background: Image.network(
+                  uploaded_images + OwnerDetail[0]['image_name'],
+                  fit: BoxFit.cover,
+                ),
+              ),
               expandedHeight: 230,
               backgroundColor: Colors.blue,
               //IconButton
@@ -253,7 +253,7 @@ class _customerState extends State<customer> {
           icon: const Icon(
             Icons.refresh,
           ),
-        ), //CustonScrollView
+        ),
       ),
     );
   }

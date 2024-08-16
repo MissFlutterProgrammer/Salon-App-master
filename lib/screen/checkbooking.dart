@@ -104,8 +104,11 @@ class CheckBooking extends StatelessWidget {
 class card_row extends StatelessWidget {
   final String text;
   final IconData icon;
-  const card_row({Key? key, required this.icon, required this.text})
-      : super(key: key);
+  const card_row({
+    Key? key,
+    required this.icon,
+    required this.text,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(

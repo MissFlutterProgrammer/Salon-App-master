@@ -150,7 +150,9 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                             const SizedBox(width: 20),
                             Text(
                               'Search Location...',
-                              style: GoogleFonts.ubuntu(fontSize: 20),
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 20,
+                              ),
                             ),
                             const Spacer(),
                             Container(
@@ -225,7 +227,9 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                                     text: TextSpan(
                                       text: Salon_image[index]['Name'],
                                       style: GoogleFonts.ubuntu(
-                                          fontSize: 20, color: Colors.black),
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                      ),
                                       children: [
                                         TextSpan(
                                           text: '\n\n' +
